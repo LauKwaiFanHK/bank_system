@@ -1,6 +1,7 @@
+package myproject;
+
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
-package myproject;
 
 public class Hello {
 	public static void main(String[] args) {

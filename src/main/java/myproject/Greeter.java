@@ -7,6 +7,7 @@ public class Greeter {
 	}
 
 	public String greet() {
-		return "Hello " + name + ", nice to meet you!");
+		return ("Hello " + name + ", nice to meet you!");
 	}
 }
+
