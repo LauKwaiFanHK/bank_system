@@ -4,6 +4,7 @@ plugins {
 }
 
 application {
+    // package and class to be main method
     mainClassName = 'myproject.ArrayTest'
 }
 
@@ -11,7 +12,7 @@ jar {
     manifest {
 	// set location of main class        
 	attributes 'Main-Class': application.mainClassName
-	// 
+	// places with classes which may be needed by JVM
         attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
 }
