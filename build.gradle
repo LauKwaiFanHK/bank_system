@@ -1,4 +1,26 @@
 plugins {
     id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'myproject.ArrayTest'
+}
+
+jar {
+    manifest {
+	// set location of main class        
+	attributes 'Main-Class': application.mainClassName
+	// 
+        attributes 'Class-Path': 'commons-lang3-3.9.jar'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 }
 
