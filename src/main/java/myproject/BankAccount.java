@@ -15,8 +15,8 @@ public class BankAccount {
 		balance -= value;
 	}
 
-	public void withdraw(long foreignValue, double conversionfactor) {
-		long convertedValue = (long) Math.round(foreignValue*conversionfactor);
+	public void withdrawForeign(long foreignValue, double conversionfactor) {
+		long convertedValue = Math.round(conversionfactor*foreignValue);
 		balance -= convertedValue; 
 	}
 }
