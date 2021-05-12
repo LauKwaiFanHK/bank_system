@@ -2,6 +2,7 @@ package myprojecttests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+
 import myproject.BankAccount;
 
 public class BankAccountTests {
