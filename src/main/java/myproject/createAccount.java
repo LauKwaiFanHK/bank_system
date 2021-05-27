@@ -6,7 +6,7 @@ public class createAccount {
 	
 	protected String command = "createAccount";
 	protected int numberOfArg = 0;
-	
+
 	private boolean verifyCommand(String input, int numberOfArg) {
 		if(input == command & numberOfArg == 0) {
 			return true;
@@ -14,9 +14,9 @@ public class createAccount {
 			return false;
 		}
 	}
-	
+
 	public void executeOrder(String input, int numberOfArg, List<BankAccount> accList) {
-		if(verifyCommand(input, numberOfArg)) {
+		if (verifyCommand(input, numberOfArg)) {
 			BankAccount acc = new BankAccount();
 			int accIdentifier = -1;
 			accList.add(acc);
@@ -26,5 +26,4 @@ public class createAccount {
 			System.out.println("Invalid command. To create a new account, type 'createAccount' and press enter.");
 		}
 	}
-	
 }

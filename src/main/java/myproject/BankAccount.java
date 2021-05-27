@@ -6,7 +6,7 @@ public class BankAccount {
 	public long getBalance() {
 		return balance;
 	}	
-	
+
 	public void deposit(long value){
 		balance += value;
 	}
