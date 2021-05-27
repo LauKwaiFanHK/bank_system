@@ -5,13 +5,13 @@ pipeline {
 		stage('Build') {
 			steps {
 				sh 'echo "Building.."'
-				sh './gradlew build"'
+				sh './gradlew build'
 			}
 		}
 		stage('Test') {
 			steps {
 				sh 'echo "Testing.."'
-				sh './gradlew test"'
+				sh './gradlew test'
 			}
 		}
 		stage('Document') {
