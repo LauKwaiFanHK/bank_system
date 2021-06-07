@@ -4,26 +4,24 @@ import java.util.List;
 
 public class createAccount {
 	
-	protected String command = "createAccount";
-	protected int numberOfArg = 0;
+	private static final String COMMAND = "create";
+    private static final int NUMBER_OF_ARG = 0;
 
-	private boolean verifyCommand(String input, int numberOfArg) {
-		if(input == command & numberOfArg == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    public int executeCreateAccount(String input, int numberOfArg, List<BankAccount> list) {
+        if (verifyCommand(input, numberOfArg)) {
+            BankAccount bankAccount = new BankAccount();
+            bankAccount.setId(list.size());
+            bankAccount.setBalance(0);
 
-	public void executeOrder(String input, int numberOfArg, List<BankAccount> accList) {
-		if (verifyCommand(input, numberOfArg)) {
-			BankAccount acc = new BankAccount();
-			int accIdentifier = -1;
-			accList.add(acc);
-			accIdentifier = accList.indexOf(acc);
-			System.out.println("A new account is created. The account number is: " + accIdentifier);
-		} else {
-			System.out.println("Invalid command. To create a new account, type 'createAccount' and press enter.");
-		}
-	}
+            list.add(bankAccount);
+            return bankAccount.getId();
+        } else {
+            System.out.println("Invalid command: " + input);
+            return -1;
+        }
+    }
+
+    private boolean verifyCommand(String input, int numberOfArg) {
+        return COMMAND.equals(input) && NUMBER_OF_ARG == numberOfArg;
+    }
 }
