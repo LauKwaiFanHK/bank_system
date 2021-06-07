@@ -119,7 +119,7 @@ public class Main {
             System.out.println("0. Please type 'login' to login");
         }
         System.out.println("1.If you want to create new account, type in 'create ' ");
-        System.out.println("2.If you want to transfer money from account A to account B, type in 'transfer ', <accountAId>, <accountBId, <amount>");
+        System.out.println("2.If you want to transfer money from account A to account B, type in 'transfer ', 'loginName ', <accountAId>, <accountBId, <amount>");
         System.out.println("3.If you want to get balance from your account, type in 'getBalance ', <accountId>");
         System.out.println("4.If you want to deposit money into your account, type in 'deposit ', <accountId> and <amount>");
         System.out.println("5.If you want to withdraw money from your account, type in 'withdraw  ','loginName ', <accountId> and <amount>");
