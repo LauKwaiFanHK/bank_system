@@ -2,7 +2,7 @@ package myproject;
 
 import java.util.List;
 
-public class createAccount {
+public class CreateAccount {
 	
 	private static final String COMMAND = "create";
     private static final int NUMBER_OF_ARG = 0;
