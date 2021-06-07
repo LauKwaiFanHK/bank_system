@@ -1,22 +1,22 @@
 package myproject;
 
 public class BankAccount {
-	protected long balance;
+    private int id;
+    private double balance;
 
-	public long getBalance() {
-		return balance;
-	}	
+    public int getId() {
+        return id;
+    }
 
-	public void deposit(long value){
-		balance += value;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void withdraw(long value) {
-		balance -= value;
-	}
+    public double getBalance() {
+        return balance;
+    }
 
-	public void withdrawForeign(long foreignValue, double conversionfactor) {
-		long convertedValue = Math.round(conversionfactor*foreignValue);
-		balance -= convertedValue; 
-	}
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }
