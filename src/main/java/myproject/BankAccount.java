@@ -20,3 +20,27 @@ public class BankAccount {
         this.balance = balance;
     }
 }
+
+@test
+package myproject;
+
+import static org.junit.Assert.assertEquals;
+
+Class BankAccountTest extends BankAccount {
+    @Test
+    void shouldFailIfCommandIsInvalid() {
+		//Given
+        int invalidNumberOfArg = 1000;
+        int expected = id;
+        //When
+        int actual = executeReturnId(invalidCommand, invalidNumberOfArg, emptyAccountList);
+       //Then
+		assertEquals(expected,actual);
+		
+	}
+    @Test
+	void shouldSuccessIfCommandIsValid() {
+		//Given
+		
+}
+
