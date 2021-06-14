@@ -10,11 +10,22 @@ application {
 
 jar {
     manifest {
-	// set location of main class        
-	attributes 'Main-Class': application.mainClassName
-	// places with classes which may be needed by JVM
+	    // set location of main class
+	    attributes 'Main-Class': application.mainClassName
+	    // places with classes which may be needed by JVM
         attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
+    baseName = 'v1'
+}
+
+task jarv2(type: Jar) {
+    manifest {
+        attributes 'Main-Class': application.mainClassName
+        attributes 'Class-Path': 'commons-lang3-3.9.jar'
+    }
+    exclude 'src/main/java/myproject/deposit.java'
+    exclude 'src/main/java/myproject/withdraw.java'
+    baseName = 'v2'
 }
 
 repositories {
