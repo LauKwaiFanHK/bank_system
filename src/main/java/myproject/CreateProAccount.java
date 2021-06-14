@@ -2,19 +2,19 @@ package myproject;
 
 import java.util.List;
 
-public class CreateAccount {
-	
+public class CreateProAccount {
 	private static final String COMMAND = "create";
     private static final int NUMBER_OF_ARG = 0;
 
-    public int executeCreateAccount(String input, int numberOfArg, List<BaseAccount> list) {
+    public int executeCreateProAccount(String input, int numberOfArg, List<BaseAccount> list) {
         if (verifyCommand(input, numberOfArg)) {
-            BankAccount bankAccount = new BankAccount();
-            bankAccount.setId(list.size());
-            bankAccount.setBalance(0);
+            ProfessionalBankAccount proBankAccount = new ProfessionalBankAccount();
+            proBankAccount.setId(list.size());
+            proBankAccount.setBalance(0);
+            proBankAccount.setCredit(0);
 
-            list.add(bankAccount);
-            return bankAccount.getId();
+            list.add(proBankAccount);
+            return proBankAccount.getId();
         } else {
             System.out.println("Invalid command: " + input);
             return -1;
