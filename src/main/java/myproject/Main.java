@@ -49,6 +49,7 @@ public class Main {
 				if (accountName != null) {
 					String[] inputArgs = choice.split(" ");
 					int numberOfArgs = inputArgs.length;
+					String command = inputArgs[0];
 
 					if (numberOfArgs == 1) {
 						if (isProVersion) {
@@ -71,24 +72,74 @@ public class Main {
 							}
 						}
 					} else if (numberOfArgs == 2) {
-						Integer bankAccountId = Integer.valueOf(inputArgs[1]);
-						List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName, new ArrayList<>());
+						if (inputArgs[0].equals("getCreditInterest")) {
 
-						double balance = service.executeGetBalance(inputArgs[0], numberOfArgs - 1, bankAccountId,
-								existedBankAccountIds, accounts);
+							Integer bankAccountId = Integer.valueOf(inputArgs[1]);
+							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
+									new ArrayList<>());
 
-						if (balance != -1) {
-							System.out.println("Your account balance is " + balance + " euro.");
+							double interest = creditService.getCreditInterset(inputArgs[0], numberOfArgs - 1,
+									bankAccountId, existedBankAccountIds, accounts);
+							if (interest != -1) {
+								System.out.println(interest + " euro as credit interest was deducted from account: " + bankAccountId);
+							} else {
+								System.out.println("You have not yet applied for any credit.");
+							}
+						}
+
+						if (inputArgs[0].equals("getBalance")) {
+							Integer bankAccountId = Integer.valueOf(inputArgs[1]);
+							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
+									new ArrayList<>());
+
+							double balance = service.executeGetBalance(inputArgs[0], numberOfArgs - 1, bankAccountId,
+									existedBankAccountIds, accounts);
+
+							if (balance != -1) {
+								System.out.println("Your account balance is " + balance + " euro.");
+							}
 						}
 					} else if (numberOfArgs == 3) {
-						Integer bankAccountId = Integer.valueOf(inputArgs[1]);
-						Integer amount = Integer.valueOf(inputArgs[2]);
-						List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName, new ArrayList<>());
+						if (inputArgs[0].equals("grantcredit")) {
 
-						double balance = service.executeDeposit(inputArgs[0], numberOfArgs - 1, bankAccountId, amount,
-								existedBankAccountIds, accounts);
-						if (balance != -1) {
-							System.out.println("Your account balance is " + balance + " euro.");
+							Integer bankAccountId = Integer.valueOf(inputArgs[1]);
+							Integer amount = Integer.valueOf(inputArgs[2]);
+							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
+									new ArrayList<>());
+
+							double credit = creditService.executeGrantCredit(inputArgs[0], numberOfArgs - 1,
+									bankAccountId, amount, existedBankAccountIds, accounts);
+							if (credit != -1) {
+								System.out.println("Your credit balance is " + credit + " euro.");
+							}
+						}
+
+						if (inputArgs[0].equals("repaycredit")) {
+
+							Integer bankAccountId = Integer.valueOf(inputArgs[1]);
+							Integer amount = Integer.valueOf(inputArgs[2]);
+							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
+									new ArrayList<>());
+
+							double credit = creditService.executeRepayCredit(inputArgs[0], numberOfArgs - 1,
+									bankAccountId, amount, existedBankAccountIds, accounts);
+							if (credit != -1) {
+								System.out.println("You repaid credit amount: " + amount
+										+ " euro. Your credit balance is " + credit + " euro.");
+							}
+						}
+
+						if (inputArgs[0].equals("deposit")) {
+							Integer bankAccountId = Integer.valueOf(inputArgs[1]);
+							Integer amount = Integer.valueOf(inputArgs[2]);
+							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
+									new ArrayList<>());
+
+							double balance = service.executeDeposit(inputArgs[0], numberOfArgs - 1, bankAccountId,
+									amount, existedBankAccountIds, accounts);
+							if (balance != -1) {
+								System.out.println("Your account balance is " + balance + " euro.");
+							}
 						}
 					} else if (numberOfArgs == 4) {
 						Integer bankAccountId = Integer.valueOf(inputArgs[2]);
@@ -106,24 +157,12 @@ public class Main {
 						Integer amount = Integer.valueOf(inputArgs[5]);
 						List<Integer> existedSenderAccountIds = accountMap.getOrDefault(accountName, new ArrayList<>());
 						String receiverAccName = inputArgs[3];
-						List<Integer> existedReceiverAccountIds = accountMap.getOrDefault(receiverAccName , new ArrayList<>());
+						List<Integer> existedReceiverAccountIds = accountMap.getOrDefault(receiverAccName,
+								new ArrayList<>());
 
 						double balance = service.executeTransfer(inputArgs[0], numberOfArgs - 1, senderAccountId,
-								receiverAccountId, amount, existedSenderAccountIds, existedReceiverAccountIds, accounts);
-						if (balance != -1) {
-							System.out.println(amount + " euro is transferred from account number: " + senderAccountId
-									+ " to account number: " + receiverAccountId);
-						}
-					} else if (numberOfArgs == 6) {
-						Integer senderAccountId = Integer.valueOf(inputArgs[2]);
-						Integer receiverAccountId = Integer.valueOf(inputArgs[4]);
-						Integer amount = Integer.valueOf(inputArgs[5]);
-						List<Integer> existedSenderAccountIds = accountMap.getOrDefault(accountName, new ArrayList<>());
-						String receiverAccName = inputArgs[3];
-						List<Integer> existedReceiverAccountIds = accountMap.getOrDefault(receiverAccName , new ArrayList<>());
-
-						double balance = service.executeTransfer(inputArgs[0], numberOfArgs - 1, senderAccountId,
-								receiverAccountId, amount, existedSenderAccountIds, existedReceiverAccountIds, accounts);
+								receiverAccountId, amount, existedSenderAccountIds, existedReceiverAccountIds,
+								accounts);
 						if (balance != -1) {
 							System.out.println(amount + " euro is transferred from account number: " + senderAccountId
 									+ " to account number: " + receiverAccountId);
@@ -165,7 +204,8 @@ public class Main {
 		if (executeProBankAcc()) {
 			System.out.println("7.If you want to apply for credit, type in 'grantcredit ', <accountId> and <amount> ");
 			System.out.println("8.If you want to repay credit, type in 'repaycredit ', <accountId> and <amount> ");
-			System.out.println("9.If you want to check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId>");
+			System.out.println(
+					"9.If you want to check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId>");
 		}
 	}
 
