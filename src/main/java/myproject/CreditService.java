@@ -64,8 +64,8 @@ public class CreditService {
 
 	}
 
-	public double getCreditInterset(String input, int numberOfArg, Integer bankAccountId,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+	public double getCreditInterest(String input, int numberOfArg, Integer bankAccountId,
+									List<Integer> existedBankAccountIds, List<BaseAccount> list) {
 		if (!isValidCommand(input, numberOfArg, getCreditInterest_COMMAND, 1)) {
 			System.out.println("Invalid command: " + input);
 			System.out.println("Please enter 'deposit ', <accountId> and <amount>");

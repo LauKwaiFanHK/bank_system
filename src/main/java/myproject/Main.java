@@ -78,7 +78,7 @@ public class Main {
 							List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName,
 									new ArrayList<>());
 
-							double interest = creditService.getCreditInterset(inputArgs[0], numberOfArgs - 1,
+							double interest = creditService.getCreditInterest(inputArgs[0], numberOfArgs - 1,
 									bankAccountId, existedBankAccountIds, accounts);
 							if (interest != -1) {
 								System.out.println(interest + " euro as credit interest was deducted from account: " + bankAccountId);
