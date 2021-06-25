@@ -1,31 +1,17 @@
 package myprojecttests;
 
-//import static org.junit.Assert.*;
+import myproject.BankAccount;
 import org.junit.Test;
 
-import myproject.BankAccount;
+import static org.junit.Assert.assertEquals;
 
 public class BankAccountTests {
-	/*@Test
-	public void deposit() {
-		BankAccount bankaccount = new BankAccount();
-		bankaccount.deposit(5000);
-		assertEquals(5000, bankaccount.getBalance());
-	}
-
-	@Test
-	public void withdraw() {
-		BankAccount bankaccount = new BankAccount();
-		bankaccount.withdraw(5000);
-		assertEquals(-5000, bankaccount.getBalance());
-	}
-
-	@Test
-	public void withdrawForeign() {
-		BankAccount bankaccount = new BankAccount();
-		bankaccount.deposit(100);
-		assertEquals(100, bankaccount.getBalance());
-		bankaccount.withdrawForeign(5, 9.22);
-		assertEquals(54, bankaccount.getBalance());
-	}*/
+    @Test
+    public void tests() {
+        BankAccount bankAccount = new BankAccount();
+        bankAccount.setId(8);
+        bankAccount.setBalance(50);
+		assertEquals(50, bankAccount.getBalance(), 0.01);
+		assertEquals(8, bankAccount.getId(), 0.01);
+    }
 }
