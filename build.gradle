@@ -15,6 +15,18 @@ jar {
 	// places with classes which may be needed by JVM
         attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
+    baseName = 'ProfessionalVersion'
+}
+
+task jarv2(type: Jar) {
+    manifest {
+        attributes 'Main-Class': application.mainClassName
+        attributes 'Class-Path': 'commons-lang3-3.9.jar'
+    }
+    exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
+    exclude 'src/main/java/myproject/CreditService.java'
+    exclude 'src/main/java/myproject/CreateProAccount.java'
+    baseName = 'StandardVersion'
 }
 
 repositories {
