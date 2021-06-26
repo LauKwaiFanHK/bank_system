@@ -23,7 +23,7 @@ pipeline {
 		stage('Pack') {
 			steps {
 				sh 'echo "Packing"'
-				sh 'zip project_package.zip docs src/main/java/myproject build/libs/bank_system.jar'
+				sh 'zip project_package.zip docs src/main/java/myproject build/libs/bank_system.jar build/libs/ProfessionalVersion.jar' 
 			}
 		}
 	}
