@@ -2,12 +2,28 @@ package myproject;
 
 import java.util.List;
 
+/** Represents credit services of the professional version
+ * @author LauKwaiFanHK
+ * @version 1.5
+ * @since 1.0
+*/
 public class CreditService {
 	private static final String grantCredit_COMMAND = "grantcredit";
 	private static final String repayCredit_COMMAND = "repaycredit";
 	private static final String payInterest_COMMAND = "payinterest";
 	private static final String getCreditInterest_COMMAND = "getCreditInterest";
 
+	/** Execute the command to grant credit to a professional bank account.
+	 * Interest to pay for the bank will be deducted from the professional bank account
+	 * once credit is granted. Assumed the fixed global interest rate to be 3.5%. 
+	 * @param input 
+	 * @param numberOfArg 
+	 * @param bankAccountId
+	 * @param credit 
+	 * @param existedBankAccountIds
+	 * @param BaseAccount
+	 * @return a double containing the granted credit amount.
+	*/
 	public double executeGrantCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
 		if (!isValidCommand(input, numberOfArg, grantCredit_COMMAND, 2)) {
@@ -30,6 +46,15 @@ public class CreditService {
 		return bankAccount.getCredit();
 	}
 
+	/** Executes the command to repay credit by a professional bank account owner.
+	 * @param input 
+	 * @param numberOfArg 
+	 * @param bankAccountId
+	 * @param credit 
+	 * @param existedBankAccountIds
+	 * @param BaseAccount
+	 * @return a double containing the credit still need to be repaid.
+	*/
 	public double executeRepayCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
 		if (!isValidCommand(input, numberOfArg, repayCredit_COMMAND, 2)) {
@@ -49,6 +74,13 @@ public class CreditService {
 		return bankAccount.getCredit();
 	}
 
+	/** Calculate the interest amount of all professional accounts and deducts the interest to be paid.
+	 * This function is only available for system admin of the professional version of bank system.
+	 * @param input 
+	 * @param numberOfArg 
+	 * @param BaseAccount
+	*/
+		
 	public void executePayInterest(String input, int numberOfArg, List<BaseAccount> list) {
 		if (!isValidCommand(input, numberOfArg, payInterest_COMMAND, 0)) {
 			System.out.println("Invalid command: " + input);
@@ -64,6 +96,14 @@ public class CreditService {
 
 	}
 
+	/** Gets the credit interest that will be deducted from the professional bank account when the user repay the credit. 
+	 * @param input
+	 * @param numberOfArg 
+	 * @param bankAccountId
+	 * @param existedBankAccountIds
+	 * @param BaseAccount
+	 * @return a double containing the amount of interest
+	*/
 	public double getCreditInterest(String input, int numberOfArg, Integer bankAccountId,
 									List<Integer> existedBankAccountIds, List<BaseAccount> list) {
 		if (!isValidCommand(input, numberOfArg, getCreditInterest_COMMAND, 1)) {
@@ -80,7 +120,7 @@ public class CreditService {
 		BaseAccount account = list.get(bankAccountId);
 		double creditToRepay = account.getCredit();
 		if (creditToRepay > 0) {
-			double interestAmount = creditToRepay * 3.5 / 100; // assumed global interest rate to be 3%
+			double interestAmount = creditToRepay * 3.5 / 100; // assumed global interest rate to be 3.5%
 			if (interestAmount > 0) {
 				return interestAmount;
 			}
@@ -88,6 +128,13 @@ public class CreditService {
 		return -1;
 	}
 
+	/** Validate the input command. 
+	 * @param input
+	 * @param numberOfArg 
+	 * @param expectedCommand
+	 * @param expectedArgs
+	 * @return a boolean containing the state of validation.
+	*/
 	private boolean isValidCommand(String input, int numberOfArg, String expectedCommand, int expectedArgs) {
 		return expectedCommand.equals(input) && expectedArgs == numberOfArg;
 	}
