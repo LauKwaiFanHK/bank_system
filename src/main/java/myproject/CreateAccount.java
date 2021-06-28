@@ -3,7 +3,7 @@ package myproject;
 import java.util.List;
 
 /** Represents the creation of an standard bank account.
- * @author LauKwaiFanHK
+ * @author Group2
  * @version 1.0
  * @since 1.0
 */

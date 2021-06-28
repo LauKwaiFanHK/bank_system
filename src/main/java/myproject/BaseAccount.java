@@ -1,7 +1,7 @@
 package myproject;
 
 /** Represents a Base Account which are a double Int.
- * @author LauKwaiFanHK
+ * @author Group2
  * @version 1.5
  * @since 1.0
 */

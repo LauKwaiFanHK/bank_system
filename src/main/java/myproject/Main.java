@@ -6,8 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/** Represents the bank system
+ * @author Group2
+ * @version 1.5
+ * @since 1.0
+*/
 public class Main {
 
+	/** Interacts with bank account owner and executes commands according to the input command. 
+	*/
 	public static void main(String[] args) {
 
 		boolean isProVersion = executeProBankAcc();
@@ -183,6 +190,10 @@ public class Main {
 
 	}
 
+	/** Prints instructions and related commands of all basic services for the bank account. 
+	 * If the loaded system is a professional version, prints instructions for additional credit services.
+	 * @param isLoggedIn 
+	*/
 	private static void choices(boolean isLoggedIn) {
 		System.out.println("\n");
 
@@ -209,6 +220,9 @@ public class Main {
 		}
 	}
 
+	/** Check if the loaded bank system is standard or professional version.
+	 * @return a boolean showing if the loaded system is a professional version.
+	*/
 	private static boolean executeProBankAcc() {
 		ClassLoader classLoader = Main.class.getClassLoader();
 
@@ -220,7 +234,8 @@ public class Main {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println(isProBankAcc);
+		//System.out.println(isProBankAcc);
 		return isProBankAcc;
 	}
+	
 }

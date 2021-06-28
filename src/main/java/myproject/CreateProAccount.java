@@ -3,7 +3,7 @@ package myproject;
 import java.util.List;
 
 /** Represents the creation of an professional account.
- * @author LauKwaiFanHK
+ * @author Group2
  * @version 1.5
  * @since 1.0
 */

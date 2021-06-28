@@ -1,7 +1,7 @@
 package myproject;
 
 /** Represents an professional bank account.
- * @author Group3
+ * @author Group2
  * @version 1.5
  * @since 1.0
 */

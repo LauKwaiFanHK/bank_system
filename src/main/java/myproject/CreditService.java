@@ -3,7 +3,7 @@ package myproject;
 import java.util.List;
 
 /** Represents credit services of the professional version
- * @author LauKwaiFanHK
+ * @author Group2
  * @version 1.5
  * @since 1.0
 */

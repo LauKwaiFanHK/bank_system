@@ -2,7 +2,9 @@ package myproject;
 
 /**
  * Represents the setting up for a standard bank account.
- * 
+ * @author Group2
+ * @since 1.0
+ * @version 1
  */
 public class BankAccount extends BaseAccount {
 

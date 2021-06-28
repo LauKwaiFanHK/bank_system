@@ -3,7 +3,7 @@ package myproject;
 import java.util.List;
 /**
  * represents bank services for a bank account.
- * @author LauKwaiFanHK
+ * @author Group2
  * @since 1.0
  * @version 1
  *
