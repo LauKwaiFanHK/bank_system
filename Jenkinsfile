@@ -29,7 +29,6 @@ pipeline {
 		stage('Upload to download server') {
 			steps {
 				sh 'echo "Uploading"'
-				sh 'apt install jq'
 				sh 'curl -F "file=@project_package.zip" https://file.io -o "readme.md" | jq -r ".link"'
 			}
 		}
