@@ -38,6 +38,7 @@ public abstract class BaseAccount {
     }
 
     /** An abstract method to gets the credit amount of a credit account.
+     * @return A double representing the credit balance of a professional account
     */
 	protected abstract double getCredit();
 
