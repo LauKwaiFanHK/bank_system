@@ -29,7 +29,7 @@ pipeline {
 		stage('Upload to download server') {
 			steps {
 				sh 'echo "Uploading"'
-				sh 'curl -F "file=@project_package.zip" https://file.io -o "readme.md" | jq -r ".link"'
+				sh 'curl -F "file=@project_package.zip" https://file.io | jq -r ".link"' >> "readme.md" 
 			}
 		}
 	}
