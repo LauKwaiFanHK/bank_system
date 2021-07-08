@@ -26,5 +26,12 @@ pipeline {
 				sh 'zip project_package.zip docs src/main/java/myproject build/libs/bank_system.jar build/libs/ProfessionalVersion.jar' 
 			}
 		}
+		stage('Upload to download server') {
+			steps {
+				sh 'echo "Uploading"'
+				sh 'sudo apt install jq'
+				sh 'curl -F "file=@project_package.zip" https://file.io -o "readme.md" | jq -r '.link'
+			}
+		}
 	}
 }
