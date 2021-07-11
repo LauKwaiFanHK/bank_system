@@ -26,7 +26,7 @@ public class MainLogic {
 	/** Interacts with bank account owner and executes commands according to the input command. 
 	 * @param args an array of strings passed as parameters when running the bank system application
 	*/
-	public void mainLoop(String[] args) {
+	public void mainLoop() {
 
 		boolean isProVersion = executeProBankAcc();
 

@@ -2,7 +2,9 @@ package myproject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,23 +12,17 @@ import java.net.Socket;
 public class EchoServer {
 	public Socket clientSocket;
 	public ServerSocket serverSocket;
-	public PrintWriter out;
-    public BufferedReader in;
+	public PrintStream out;
+    public InputStream in;
     
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        out = new PrintStream(clientSocket.getOutputStream(), true);
+        in = clientSocket.getInputStream();
         
-        print("Hey,it is your bank assistant,we are happy to see you!");
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-	        switch (inputLine) {
-	        case "login":
-	        	print("Please enter your name");
-	        }
-        }
+        MainLogic bankSystem = new MainLogic(in, out);
+        bankSystem.mainLoop();
     }
     
     public void stop() throws IOException {
