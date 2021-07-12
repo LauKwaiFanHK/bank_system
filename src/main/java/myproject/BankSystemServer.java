@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class EchoServer {
+public class BankSystemServer {
 	public Socket clientSocket;
 	public ServerSocket serverSocket;
 	public PrintStream out;
@@ -21,7 +21,7 @@ public class EchoServer {
         out = new PrintStream(clientSocket.getOutputStream(), true);
         in = clientSocket.getInputStream();
         
-        MainLogic bankSystem = new MainLogic(in, out);
+        BankSystem bankSystem = new BankSystem(in, out);
         bankSystem.mainLoop();
     }
     
@@ -32,7 +32,7 @@ public class EchoServer {
         serverSocket.close();
     }
     public static void main(String[] args) {
-        EchoServer server=new EchoServer();
+        BankSystemServer server=new BankSystemServer();
         try {
         	server.start(4444);
         } catch (IOException e) {

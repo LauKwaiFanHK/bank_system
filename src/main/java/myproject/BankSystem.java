@@ -13,12 +13,12 @@ import java.util.Scanner;
  * @version 1.5
  * @since 1.0
 */
-public class MainLogic {
+public class BankSystem {
 
 	private InputStream standardIn;
 	private PrintStream standardOut;
 
-	public MainLogic(InputStream standardIn, PrintStream standardOut) {
+	public BankSystem(InputStream standardIn, PrintStream standardOut) {
 		this.standardIn = standardIn;
 		this.standardOut = standardOut;
 	}
@@ -209,25 +209,25 @@ public class MainLogic {
 		System.out.println("\n");
 
 		if (isLoggedIn) {
-			standardOut.println("0. Please type 'logout' to logout");
+			standardOut.println("\n 0. Please type 'logout' to logout");
 		} else {
-			standardOut.println("0. Please type 'login' to login");
+			standardOut.println("\n 0. Please type 'login' to login");
 		}
-		standardOut.println("1.If you want to create new account, type in 'create ' ");
+		standardOut.println("1. If you want to create new account, type in 'create ' ");
 		standardOut.println(
-				"2.If you want to transfer money from account A to account B, type in 'transfer ', 'loginName ', <accountAId>, 'receiverName', <accountBId>, <amount>");
-		standardOut.println("3.If you want to get balance from your account, type in 'getBalance ', <accountId>");
+				"2. If you want to transfer money from account A to account B, type in 'transfer ', 'loginName ', <accountAId>, 'receiverName', <accountBId>, <amount>");
+		standardOut.println("3. If you want to get balance from your account, type in 'getBalance ', <accountId>");
 		standardOut.println(
-				"4.If you want to deposit money into your account, type in 'deposit ', <accountId> and <amount>");
+				"4. If you want to deposit money into your account, type in 'deposit ', <accountId> and <amount>");
 		standardOut.println(
-				"5.If you want to withdraw money from your account, type in 'withdraw  ','loginName ', <accountId> and <amount>");
-		standardOut.println("6.If you dont want to proceed, type in 'bye' ");
+				"5. If you want to withdraw money from your account, type in 'withdraw  ','loginName ', <accountId> and <amount>");
+		standardOut.println("6. If you dont want to proceed, type in 'bye' ");
 
 		if (executeProBankAcc()) {
-			standardOut.println("7.If you want to apply for credit, type in 'grantcredit ', <accountId> and <amount> ");
-			standardOut.println("8.If you want to repay credit, type in 'repaycredit ', <accountId> and <amount> ");
+			standardOut.println("7. If you want to apply for credit, type in 'grantcredit ', <accountId> and <amount> ");
+			standardOut.println("8. If you want to repay credit, type in 'repaycredit ', <accountId> and <amount> ");
 			standardOut.println(
-					"9.If you want to check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId>");
+					"9. If you want to check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId>");
 		}
 	}
 
@@ -235,7 +235,7 @@ public class MainLogic {
 	 * @return a boolean showing if the loaded system is a professional version.
 	*/
 	private static boolean executeProBankAcc() {
-		ClassLoader classLoader = MainLogic.class.getClassLoader();
+		ClassLoader classLoader = BankSystem.class.getClassLoader();
 
 		boolean isProBankAcc = false;
 
