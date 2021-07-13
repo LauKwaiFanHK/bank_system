@@ -1,5 +1,6 @@
 package myprojecttests;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import myproject.BaseAccount;
 public class BankAccountServiceTests extends TestCase {
 
 	public void testExecuteGetBalance() {
+		PrintStream out = null;
 		BankAccountService bankAccountService = new BankAccountService();
 		BaseAccount bankAccount = new BankAccount();
 		bankAccount.setId(0);
@@ -19,11 +21,12 @@ public class BankAccountServiceTests extends TestCase {
 		idLists.add(bankAccount.getId());
 		List<BaseAccount> baseAccounts = new ArrayList();
 		baseAccounts.add(bankAccount);
-		double result = bankAccountService.executeGetBalance("getBalance", 1, 0, idLists, baseAccounts);
+		double result = bankAccountService.executeGetBalance("getBalance", 1, 0, idLists, baseAccounts, out);
 		assertEquals(100D, result);
 	}
 
 	public void testExecuteDeposit() {
+		PrintStream out = null;
 		BankAccountService bankAccountService = new BankAccountService();
 		BaseAccount bankAccount = new BankAccount();
 		bankAccount.setId(0);
@@ -32,12 +35,13 @@ public class BankAccountServiceTests extends TestCase {
 		idLists.add(bankAccount.getId());
 		List<BaseAccount> baseAccounts = new ArrayList();
 		baseAccounts.add(bankAccount);
-		double result = bankAccountService.executeDeposit("deposit", 2, 0, 200, idLists, baseAccounts);
+		double result = bankAccountService.executeDeposit("deposit", 2, 0, 200, idLists, baseAccounts, out);
 		assertEquals(300D, result);
 		
 	}
 
 	public void testExecuteWithdraw() {
+		PrintStream out = null;
 		BankAccountService bankAccountService = new BankAccountService();
 		BaseAccount bankAccount = new BankAccount();
 		bankAccount.setId(0);
@@ -46,12 +50,13 @@ public class BankAccountServiceTests extends TestCase {
 		idLists.add(bankAccount.getId());
 		List<BaseAccount> baseAccounts = new ArrayList();
 		baseAccounts.add(bankAccount);
-		double result = bankAccountService.executeWithdraw("withdraw", 2, 0, 200, idLists, baseAccounts);
+		double result = bankAccountService.executeWithdraw("withdraw", 2, 0, 200, idLists, baseAccounts, out);
 		assertEquals(0D, result);
 		
 	}
 
 	public void testExecuteTransfer() {
+	PrintStream out = null;
 	BankAccountService bankAccountService = new BankAccountService();
 	BaseAccount bankAccount1 = new BankAccount();
 	BaseAccount bankAccount2 = new BankAccount();
@@ -68,7 +73,7 @@ public class BankAccountServiceTests extends TestCase {
 	baseAccounts.add(bankAccount2);
 	double result = bankAccountService
 			.executeTransfer("transfer", 5, 0, 1, 300, 
-					idSendList, idReceiverList , baseAccounts);
+					idSendList, idReceiverList , baseAccounts, out);
 	assertEquals(700D, result);
 	}
 

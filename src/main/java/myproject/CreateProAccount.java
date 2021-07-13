@@ -34,7 +34,6 @@ public class CreateProAccount {
 			list.add(proBankAccount);
 			return proBankAccount.getId();
 		} else {
-			System.out.println("Invalid command: " + input);
 			return -1;
 		}
 	}

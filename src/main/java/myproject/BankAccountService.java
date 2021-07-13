@@ -1,5 +1,6 @@
 package myproject;
 
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class BankAccountService {
 	 * Represents the string of command to transfer money from a bank account to
 	 * another bank account.
 	 */
-	private static final String TRANSFER_COMMAND = "transfer";
+	private static final String TRANSFER_COMMAND = "transfer";	
 
 	/**
 	 * Executes the command to get balance of a bank account.
@@ -46,15 +47,15 @@ public class BankAccountService {
 	 *                              accounts in the bank system
 	 */
 	public double executeGetBalance(String input, int numberOfArg, Integer bankAccountId,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, GETBALANCE_COMMAND, 1)) {
-			System.out.println("Invalid command: " + input);
-			System.out.println("Please enter 'deposit ', <accountId> and <amount>");
+			standardOut.println("Invalid command: " + input);
+			standardOut.println("Please enter 'deposit ', <accountId> and <amount>");
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
@@ -80,19 +81,19 @@ public class BankAccountService {
 	 *                              accounts in the bank system
 	 */
 	public double executeDeposit(String input, int numberOfArg, Integer bankAccountId, double amount,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, DEPOSIT_COMMAND, 2)) {
-			System.out.println("Invalid command: " + input);
+			standardOut.println("Invalid command: " + input);
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
 		if (amount <= 0.0) {
-			System.out.println("Invalid amount: " + amount);
+			standardOut.println("Invalid amount: " + amount);
 			return -1;
 		}
 
@@ -118,26 +119,26 @@ public class BankAccountService {
 	 *                              accounts in the bank system
 	 */
 	public double executeWithdraw(String input, int numberOfArg, Integer bankAccountId, double amount,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, WITHDRAW_COMMAND, 2)) {
-			System.out.println("Invalid command: " + input);
+			standardOut.println("Invalid command: " + input);
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
 		if (amount <= 0) {
-			System.out.println("Invalid amount: " + amount);
+			standardOut.println("Invalid amount: " + amount);
 			return -1;
 		}
 
 		BaseAccount bankAccount = list.get(bankAccountId);
 
 		if (bankAccount.getBalance() < amount) {
-			System.out.println("insufficient balance: " + bankAccount.getBalance());
+			standardOut.println("insufficient balance: " + bankAccount.getBalance());
 			return -1;
 		}
 
@@ -169,32 +170,32 @@ public class BankAccountService {
 	 */
 	public double executeTransfer(String input, int numberOfArg, Integer senderAccountId, Integer receiverAccountId,
 			double amount, List<Integer> existedSenderAccountIds, List<Integer> existedReceiverAccountIds,
-			List<BaseAccount> list) {
+			List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, TRANSFER_COMMAND, 5)) {
-			System.out.println("Invalid command: " + input);
+			standardOut.println("Invalid command: " + input);
 			return -1;
 		}
 
 		if (!existedSenderAccountIds.contains(senderAccountId)
 				|| !existedReceiverAccountIds.contains(receiverAccountId)) {
 			if (!existedSenderAccountIds.contains(senderAccountId)) {
-				System.out.println("Invalid sender account id: " + senderAccountId);
+				standardOut.println("Invalid sender account id: " + senderAccountId);
 				return -1;
 			} else {
-				System.out.println("Invalid receiver account id: " + receiverAccountId);
+				standardOut.println("Invalid receiver account id: " + receiverAccountId);
 				return -1;
 			}
 		}
 
 		if (amount <= 0) {
-			System.out.println("Invalid amount: " + amount);
+			standardOut.println("Invalid amount: " + amount);
 			return -1;
 		}
 
 		BaseAccount senderAccount = list.get(senderAccountId);
 
 		if (senderAccount.getBalance() < amount) {
-			System.out.println("insufficient balance: " + senderAccount.getBalance());
+			standardOut.println("insufficient balance: " + senderAccount.getBalance());
 			return -1;
 		}
 

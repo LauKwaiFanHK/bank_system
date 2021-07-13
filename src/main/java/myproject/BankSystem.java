@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-/** Represents the bank system
+/**
+ * Represents the bank system
+ * 
  * @author Group2
  * @version 1.5
  * @since 1.0
-*/
+ */
 public class BankSystem {
 
 	private InputStream standardIn;
@@ -22,17 +24,16 @@ public class BankSystem {
 		this.standardIn = standardIn;
 		this.standardOut = standardOut;
 	}
-	
-	/** Interacts with bank account owner and executes commands according to the input command. 
-	 * @param args an array of strings passed as parameters when running the bank system application
-	*/
+
+	/**
+	 * Interacts with bank account owner and executes a command based on user input.
+	 */
 	public void mainLoop() {
 
 		boolean isProVersion = executeProBankAcc();
 
-		standardOut.println("Hey,it is your bank assistant,we are happy to see you!");
-		standardOut.println("Please type in what you wanna do.");
-		choices(false);
+		getStartDialog();
+		showChoices(false);
 
 		Scanner scanner = new Scanner(standardIn);
 		String choice = scanner.nextLine();
@@ -69,7 +70,7 @@ public class BankSystem {
 					int numberOfArgs = inputArgs.length;
 					String command = inputArgs[0];
 
-					if (numberOfArgs == 1) {
+					if (numberOfArgs == 1 && command.equals("create")) {
 						if (isProVersion) {
 							CreateProAccount createProAccount = new CreateProAccount();
 							int accountId = createProAccount.executeCreateProAccount(inputArgs[0], 0, accounts);
@@ -77,7 +78,8 @@ public class BankSystem {
 								accountMap.putIfAbsent(accountName, new ArrayList<>());
 								accountMap.get(accountName).add(accountId);
 
-								standardOut.println("New account is created. The account number is " + accountId + " .");
+								standardOut
+										.println("New account is created. The account number is " + accountId + " .");
 							}
 						} else {
 							CreateAccount createAccount = new CreateAccount();
@@ -86,7 +88,8 @@ public class BankSystem {
 								accountMap.putIfAbsent(accountName, new ArrayList<>());
 								accountMap.get(accountName).add(accountId);
 
-								standardOut.println("New account is created. The account number is " + accountId + " .");
+								standardOut
+										.println("New account is created. The account number is " + accountId + " .");
 							}
 						}
 					} else if (numberOfArgs == 2) {
@@ -97,9 +100,10 @@ public class BankSystem {
 									new ArrayList<>());
 
 							double interest = creditService.getCreditInterest(inputArgs[0], numberOfArgs - 1,
-									bankAccountId, existedBankAccountIds, accounts);
+									bankAccountId, existedBankAccountIds, accounts, standardOut);
 							if (interest != -1) {
-								standardOut.println(interest + " euro as credit interest was deducted from account: " + bankAccountId);
+								standardOut.println(interest + " euro as credit interest was deducted from account: "
+										+ bankAccountId);
 							} else {
 								standardOut.println("You have not yet applied for any credit.");
 							}
@@ -111,7 +115,7 @@ public class BankSystem {
 									new ArrayList<>());
 
 							double balance = service.executeGetBalance(inputArgs[0], numberOfArgs - 1, bankAccountId,
-									existedBankAccountIds, accounts);
+									existedBankAccountIds, accounts, standardOut);
 
 							if (balance != -1) {
 								standardOut.println("Your account balance is " + balance + " euro.");
@@ -126,7 +130,7 @@ public class BankSystem {
 									new ArrayList<>());
 
 							double credit = creditService.executeGrantCredit(inputArgs[0], numberOfArgs - 1,
-									bankAccountId, amount, existedBankAccountIds, accounts);
+									bankAccountId, amount, existedBankAccountIds, accounts, standardOut);
 							if (credit != -1) {
 								standardOut.println("Your credit balance is " + credit + " euro.");
 							}
@@ -140,7 +144,7 @@ public class BankSystem {
 									new ArrayList<>());
 
 							double credit = creditService.executeRepayCredit(inputArgs[0], numberOfArgs - 1,
-									bankAccountId, amount, existedBankAccountIds, accounts);
+									bankAccountId, amount, existedBankAccountIds, accounts, standardOut);
 							if (credit != -1) {
 								standardOut.println("You repaid credit amount: " + amount
 										+ " euro. Your credit balance is " + credit + " euro.");
@@ -154,7 +158,7 @@ public class BankSystem {
 									new ArrayList<>());
 
 							double balance = service.executeDeposit(inputArgs[0], numberOfArgs - 1, bankAccountId,
-									amount, existedBankAccountIds, accounts);
+									amount, existedBankAccountIds, accounts, standardOut);
 							if (balance != -1) {
 								standardOut.println("Your account balance is " + balance + " euro.");
 							}
@@ -165,7 +169,7 @@ public class BankSystem {
 						List<Integer> existedBankAccountIds = accountMap.getOrDefault(accountName, new ArrayList<>());
 
 						double balance = service.executeWithdraw(inputArgs[0], numberOfArgs - 2, bankAccountId, amount,
-								existedBankAccountIds, accounts);
+								existedBankAccountIds, accounts, standardOut);
 						if (balance != -1) {
 							standardOut.println("Your account balance is " + balance + " euro.");
 						}
@@ -179,8 +183,8 @@ public class BankSystem {
 								new ArrayList<>());
 
 						double balance = service.executeTransfer(inputArgs[0], numberOfArgs - 1, senderAccountId,
-								receiverAccountId, amount, existedSenderAccountIds, existedReceiverAccountIds,
-								accounts);
+								receiverAccountId, amount, existedSenderAccountIds, existedReceiverAccountIds, accounts,
+								standardOut);
 						if (balance != -1) {
 							standardOut.println(amount + " euro is transferred from account number: " + senderAccountId
 									+ " to account number: " + receiverAccountId);
@@ -195,45 +199,60 @@ public class BankSystem {
 			}
 			}
 
-			choices(accountName != null);
+			showChoices(accountName != null);
 			choice = scanner.nextLine();
 		}
 
 	}
 
-	/** Prints instructions and related commands of all basic services for the bank account. 
-	 * If the loaded system is a professional version, prints instructions for additional credit services.
-	 * @param isLoggedIn 
-	*/
-	private void choices(boolean isLoggedIn) {
-		System.out.println("\n");
+	/**
+	 * Prints greeting dialog after the bank system is executed.
+	 */
+	private void getStartDialog() {
+		standardOut.println("Hey,it is your bank assistant,we are happy to see you!");
+		standardOut.println("To use the bank services, please login.");
+	}
+
+	/**
+	 * Prints instructions and related commands of all basic services for the bank
+	 * account. If the loaded system is a professional version, prints instructions
+	 * for additional credit services.
+	 * 
+	 * @param isLoggedIn
+	 */
+	private void showChoices(boolean isLoggedIn) {
+		standardOut.println("\n");
 
 		if (isLoggedIn) {
-			standardOut.println("\n 0. Please type 'logout' to logout");
+			standardOut.println("0. Please type 'logout' to logout");
 		} else {
-			standardOut.println("\n 0. Please type 'login' to login");
+			standardOut.println("0. Please type 'login' to login");
 		}
-		standardOut.println("1. If you want to create new account, type in 'create ' ");
+		standardOut.println("1. To create a new account, type 'create ' and press enter.");
 		standardOut.println(
-				"2. If you want to transfer money from account A to account B, type in 'transfer ', 'loginName ', <accountAId>, 'receiverName', <accountBId>, <amount>");
-		standardOut.println("3. If you want to get balance from your account, type in 'getBalance ', <accountId>");
+				"2. To transfer money from account A to account B, type 'transfer ', 'loginName ', <accountAId>, 'receiverName', <accountBId>, <amount> and press enter.");
+		standardOut.println("3. To get balance from your account, type 'getBalance ', <accountId> and press enter.");
 		standardOut.println(
-				"4. If you want to deposit money into your account, type in 'deposit ', <accountId> and <amount>");
+				"4. To deposit money into your account, type 'deposit ', <accountId> and <amount> and press enter.");
 		standardOut.println(
-				"5. If you want to withdraw money from your account, type in 'withdraw  ','loginName ', <accountId> and <amount>");
-		standardOut.println("6. If you dont want to proceed, type in 'bye' ");
+				"5. To withdraw money from your account, type 'withdraw  ','loginName ', <accountId> and <amount> and press enter.");
+		standardOut.println("6. If you dont want to proceed, type 'bye' and press enter.");
 
 		if (executeProBankAcc()) {
-			standardOut.println("7. If you want to apply for credit, type in 'grantcredit ', <accountId> and <amount> ");
-			standardOut.println("8. If you want to repay credit, type in 'repaycredit ', <accountId> and <amount> ");
 			standardOut.println(
-					"9. If you want to check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId>");
+					"7. To apply for credit, type in 'grantcredit ', <accountId> and <amount> and press enter.");
+			standardOut
+					.println("8. To repay credit, type in 'repaycredit ', <accountId> and <amount> and press enter.");
+			standardOut.println(
+					"9. To check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId> and press enter.");
 		}
 	}
 
-	/** Check if the loaded bank system is standard or professional version.
+	/**
+	 * Check if the loaded bank system is standard or professional version.
+	 * 
 	 * @return a boolean showing if the loaded system is a professional version.
-	*/
+	 */
 	private static boolean executeProBankAcc() {
 		ClassLoader classLoader = BankSystem.class.getClassLoader();
 
@@ -245,8 +264,7 @@ public class BankSystem {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		//System.out.println(isProBankAcc);
 		return isProBankAcc;
 	}
-	
+
 }

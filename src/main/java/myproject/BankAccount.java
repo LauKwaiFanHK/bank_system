@@ -1,5 +1,8 @@
 package myproject;
 
+import java.io.InputStream;
+import java.io.PrintStream;
+
 /**
  * Represents the setting up for a standard bank account.
  * @author Group2
@@ -7,13 +10,15 @@ package myproject;
  * @version 1
  */
 public class BankAccount extends BaseAccount {
+	
+	private PrintStream standardOut;
 
 	/**
 	 * Return a message that credit service is only available for professional version.
 	 */
 	@Override
 	public double getCredit() {
-		System.out.println("This bank account type does not support this function. Please upgrade to professional bank account.");
+		standardOut.println("This bank account type does not support this function. Please upgrade to professional bank account.");
 		return 0;
 	}
 
@@ -22,7 +27,7 @@ public class BankAccount extends BaseAccount {
 	 */
 	@Override
 	public void setCredit(double d) {
-		System.out.println("This bank account type does not support this function. Please upgrade to professional bank account.");
+		standardOut.println("This bank account type does not support this function. Please upgrade to professional bank account.");
 	}
 
 }

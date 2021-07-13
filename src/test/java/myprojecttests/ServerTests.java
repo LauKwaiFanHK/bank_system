@@ -34,11 +34,12 @@ public class ServerTests {
 		    assertEquals("hello", resp1);
 		    assertEquals("world", resp2);
 		    assertEquals("!", resp3);
-		    assertEquals("good bye", resp4);
+		    assertEquals(".", resp4);
 		    
 	    } catch (IOException e) {
 	    	System.out.println(e);
 	    }
 
 	}
+	
 }

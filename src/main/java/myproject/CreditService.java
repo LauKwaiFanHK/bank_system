@@ -1,5 +1,6 @@
 package myproject;
 
+import java.io.PrintStream;
 import java.util.List;
 
 /**
@@ -34,15 +35,15 @@ public class CreditService {
 	 * @return a double containing the granted credit amount.
 	 */
 	public double executeGrantCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, grantCredit_COMMAND, 2)) {
-			System.out.println("Invalid command: " + input + ".");
-			System.out.println("Please enter 'grantcredit ', <accountId> and <amount>");
+			standardOut.println("Invalid command: " + input + ".");
+			standardOut.println("Please enter 'grantcredit ', <accountId> and <amount>");
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
@@ -72,15 +73,15 @@ public class CreditService {
 	 * @return a double containing the credit still need to be repaid.
 	 */
 	public double executeRepayCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, repayCredit_COMMAND, 2)) {
-			System.out.println("Invalid command: " + input);
-			System.out.println("Please enter 'repaycredit ', <accountId> and <amount>");
+			standardOut.println("Invalid command: " + input);
+			standardOut.println("Please enter 'repaycredit ', <accountId> and <amount>");
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
@@ -133,15 +134,15 @@ public class CreditService {
 	 * @return a double containing the amount of interest
 	 */
 	public double getCreditInterest(String input, int numberOfArg, Integer bankAccountId,
-			List<Integer> existedBankAccountIds, List<BaseAccount> list) {
+			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
 		if (!isValidCommand(input, numberOfArg, getCreditInterest_COMMAND, 1)) {
-			System.out.println("Invalid command: " + input);
-			System.out.println("Please enter 'deposit ', <accountId> and <amount>");
+			standardOut.println("Invalid command: " + input);
+			standardOut.println("Please enter 'deposit ', <accountId> and <amount>");
 			return -1;
 		}
 
 		if (!existedBankAccountIds.contains(bankAccountId)) {
-			System.out.println("Invalid account id: " + bankAccountId);
+			standardOut.println("Invalid account id: " + bankAccountId);
 			return -1;
 		}
 
