@@ -1,5 +1,7 @@
 package myproject;
 
+import java.io.IOException;
+
 /** Executes the bank system in console
  * @author Group2
  * @version 1.5
@@ -12,9 +14,15 @@ public class Main {
 	 * @param args an array of strings passed as parameters when running the bank system application.
 	*/
 	public static void main(String[] args) {
-		BankSystem bankSystem = new BankSystem(System.in, System.out);
-		bankSystem.mainLoop();
-
+		/*BankSystem bankSystem = new BankSystem(System.in, System.out);
+		bankSystem.mainLoop();*/
+		BankSystemServer server = new BankSystemServer();
+		try {
+			server.start(4444);
+			server.stop();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
 	}
 
 }

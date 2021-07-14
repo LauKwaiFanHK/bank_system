@@ -5,15 +5,15 @@ plugins {
 
 application {
     // package and class to be main method
-    mainClassName = 'myproject.BankSystemServer'
+    mainClassName = 'myproject.Main'
 }
 
 jar {
     manifest {
-	// set location of main class        
-	attributes 'Main-Class': "myproject.BankSystemServer"
-	// places with classes which may be needed by JVM
-    attributes 'Class-Path': 'commons-lang3-3.9.jar'
+		// set location of main class        
+		attributes 'Main-Class': application.mainClassName
+		// places with classes which may be needed by JVM
+	    attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
 	
     baseName = 'ProfessionalVersion'
@@ -21,12 +21,15 @@ jar {
 
 task jarv2(type: Jar) {
     manifest {
-	// set location of main class        
-	attributes 'Main-Class': "myproject.BankSystemServer"
-	// places with classes which may be needed by JVM
-    attributes 'Class-Path': 'commons-lang3-3.9.jar'
+    	// set location of main class        
+		attributes 'Main-Class': application.mainClassName
+		// places with classes which may be needed by JVM
+	    attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
 	
+    exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
+    exclude 'src/main/java/myproject/CreditService.java'
+    exclude 'src/main/java/myproject/CreateProAccount.java'
     baseName = 'StandardVersion'
 }
 

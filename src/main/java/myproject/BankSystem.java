@@ -202,7 +202,7 @@ public class BankSystem {
 			showChoices(accountName != null);
 			choice = scanner.nextLine();
 		}
-
+		scanner.close();
 	}
 
 	/**

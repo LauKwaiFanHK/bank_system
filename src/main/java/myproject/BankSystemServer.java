@@ -28,16 +28,4 @@ public class BankSystemServer {
         clientSocket.close();
         serverSocket.close();
     }
-    public static void main(String[] args) {
-        BankSystemServer server=new BankSystemServer();
-        try {
-        	server.start(4444);
-        } catch (IOException e) {
-        	System.out.println(e);
-        }
-    }
-    
-    public void print(String string) {
-    	out.println(string);
-    }
 }
