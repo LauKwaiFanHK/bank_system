@@ -17,7 +17,7 @@ jar {
     }
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 	
-    jarv1.baseName = 'ProfessionalVersion'
+    baseName = 'ProfessionalVersion'
 }
 
 task jarv2(type: Jar) {
