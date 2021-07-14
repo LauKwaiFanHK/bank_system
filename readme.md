@@ -3,7 +3,6 @@ CONTENTS OF THIS FILE
 * Introduction
 * Requirements
 * Installation
-* Configuration
 * Authors
 
 Introduction
@@ -26,6 +25,10 @@ Users using professional version are able to use the following additional functi
 
 Administrator of the bank system can:
 * View the total interest being deducted from all professional bank user who are granted with credit
+
+Requirement
+-----------
+No modules or packages outside the project are required. 
 
 Installation
 ------------
