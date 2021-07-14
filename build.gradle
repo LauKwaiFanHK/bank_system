@@ -16,23 +16,7 @@ sourceSets {
     }  
 } 
 
-ext.serverExcludes = []
-
-task jar1(type: Jar) {  
-    from(sourceSets.main.output) {  
-        include "main/java/myproject/**" 
-        project.ext.serverExcludes.addAll(includes)
-    }  
-}
-
-task jar2(type: Jar) {  
-    from(sourceSets.main.output) {  
-    	include "main/java/myproject/**" 
-        project.ext.serverExcludes.addAll(includes)
-    }  
-}
-
-/*jar {
+jar {
     manifest {
 	// set location of main class        
 	attributes 'Main-Class': application.mainClassName
@@ -60,7 +44,7 @@ task jarv2(type: Jar) {
     jarv2.baseName = 'StandardVersion'
 }
 
-jar.dependsOn(jarv2)*/
+jar.dependsOn(jarv2)
 
 repositories {
     mavenCentral()
