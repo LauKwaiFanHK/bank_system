@@ -8,14 +8,6 @@ application {
     mainClassName = 'myproject.BankSystemServer'
 }
 
-sourceSets {  
-    main {  
-        java {  
-            srcDir 'src'  
-        }  
-    }  
-} 
-
 jar {
     manifest {
 	// set location of main class        
