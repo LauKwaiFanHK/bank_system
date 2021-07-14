@@ -20,7 +20,7 @@ jar {
     jarv1.baseName = 'ProfessionalVersion'
 }
 
-task jarv2(type: Jar, dependsOn: jar) {
+task jarv2(type: Jar) {
     manifest {
     	// set location of main class        
 		attributes 'Main-Class': application.mainClassName
@@ -33,10 +33,10 @@ task jarv2(type: Jar, dependsOn: jar) {
     exclude 'src/main/java/myproject/CreditService.java'
     exclude 'src/main/java/myproject/CreateProAccount.java'
     
-    jarv2.baseName = 'bank_system'
+    jarv2.baseName = 'StandardVersion'
 }
 
-//jar.dependsOn(jarv2)
+jar.dependsOn(jarv2)
 
 repositories {
     mavenCentral()
