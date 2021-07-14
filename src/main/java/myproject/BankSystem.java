@@ -19,6 +19,7 @@ public class BankSystem {
 
 	private InputStream standardIn;
 	private PrintStream standardOut;
+	private boolean isProVersion;
 
 	public BankSystem(InputStream standardIn, PrintStream standardOut) {
 		this.standardIn = standardIn;
@@ -28,10 +29,9 @@ public class BankSystem {
 	/**
 	 * Interacts with bank account owner and executes a command based on user input.
 	 */
-	public void mainLoop() {
-
-		boolean isProVersion = executeProBankAcc();
-
+	public void mainLoop(boolean isPro) {
+		
+		this.isProVersion = isPro;
 		getStartDialog();
 		showChoices(false);
 
@@ -238,7 +238,7 @@ public class BankSystem {
 				"5. To withdraw money from your account, type 'withdraw  ','loginName ', <accountId> and <amount> and press enter.");
 		standardOut.println("6. If you dont want to proceed, type 'bye' and press enter.");
 
-		if (executeProBankAcc()) {
+		if (isProVersion) {
 			standardOut.println(
 					"7. To apply for credit, type in 'grantcredit ', <accountId> and <amount> and press enter.");
 			standardOut
@@ -246,25 +246,6 @@ public class BankSystem {
 			standardOut.println(
 					"9. To check the amount of credit interest being deducted from your account, type in 'getCreditInterest ', <accountId> and press enter.");
 		}
-	}
-
-	/**
-	 * Check if the loaded bank system is standard or professional version.
-	 * 
-	 * @return a boolean showing if the loaded system is a professional version.
-	 */
-	private static boolean executeProBankAcc() {
-		ClassLoader classLoader = BankSystem.class.getClassLoader();
-
-		boolean isProBankAcc = false;
-
-		try {
-			Class aClass = classLoader.loadClass("myproject.ProfessionalBankAccount");
-			isProBankAcc = true;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return isProBankAcc;
 	}
 
 }

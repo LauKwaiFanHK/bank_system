@@ -12,14 +12,14 @@ public class BankSystemServer {
 	public PrintStream out;
     public InputStream in;
     
-    public void start(int port) throws IOException {
+    public void start(int port, boolean isProVersion) throws IOException {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         out = new PrintStream(clientSocket.getOutputStream(), true);
         in = clientSocket.getInputStream();
         
         BankSystem bankSystem = new BankSystem(in, out);
-        bankSystem.mainLoop();
+        bankSystem.mainLoop(isProVersion);
     }
     
     public void stop() throws IOException {
