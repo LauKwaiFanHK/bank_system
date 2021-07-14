@@ -20,7 +20,7 @@ jar {
 
 task jarv2(type: Jar) {
     manifest {
-        attributes 'Main-Class': application.mainClassName
+        attributes 'BankSystemServer-Class': application.mainClassName
         attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
     exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
