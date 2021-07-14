@@ -8,7 +8,7 @@ application {
     mainClassName = 'myproject.BankSystemServer'
 }
 
-task jarv1(type: Jar, dependsOn: jar) {
+jar {
     manifest {
 	// set location of main class        
 	attributes 'Main-Class': application.mainClassName
@@ -33,7 +33,7 @@ task jarv2(type: Jar, dependsOn: jar) {
     exclude 'src/main/java/myproject/CreditService.java'
     exclude 'src/main/java/myproject/CreateProAccount.java'
     
-    jarv2.baseName = 'StandardVersion'
+    jarv2.baseName = 'bank_system'
 }
 
 //jar.dependsOn(jarv2)
