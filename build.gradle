@@ -19,15 +19,10 @@ jar {
     baseName = 'ProfessionalVersion'
 }
 
-task jarv2(type: Jar) {
-    manifest {
-	// set location of main class        
-	attributes 'Main-Class': "myproject.BankSystemServer"
-	// places with classes which may be needed by JVM
-    attributes 'Class-Path': 'commons-lang3-3.9.jar'
-    }
-	
-    baseName = 'StandardVersion'
+task copyJar(type: Copy) {
+    from jar
+    into 'StandardVersion'
+    
 }
 
 repositories {
