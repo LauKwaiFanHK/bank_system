@@ -30,8 +30,10 @@ task jarv2(type: Jar) {
     exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
     exclude 'src/main/java/myproject/CreditService.java'
     exclude 'src/main/java/myproject/CreateProAccount.java'
-    baseName = 'bank_system'
+    baseName = 'StandardVersion'
 }
+
+jar.dependsOn(jarv2)
 
 repositories {
     mavenCentral()
