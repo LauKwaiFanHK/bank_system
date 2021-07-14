@@ -20,8 +20,8 @@ jar {
 }
 
 task copyJar(type: Copy) {
-    from jar
-    into 'StandardVersion'
+    from "build/libs/${ProfessionalVersion}.jar"
+    into 'build/libs'
     
 }
 
