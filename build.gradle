@@ -19,11 +19,11 @@ jar {
 }
 
 task jarv2(type: Jar) {
-    from sourceSets.main.output
-    
-    exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
-    exclude 'src/main/java/myproject/CreditService.java'
-    exclude 'src/main/java/myproject/CreateProAccount.java'
+    from sourceSets.main.output {    
+    	exclude 'src/main/java/myproject/ProfessionalBankAccount.java'
+    	exclude 'src/main/java/myproject/CreditService.java'
+    	exclude 'src/main/java/myproject/CreateProAccount.java'
+    }
     baseName = 'StandardVersion'
 }
 
