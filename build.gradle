@@ -11,7 +11,7 @@ application {
 jar {
     manifest {
 	// set location of main class        
-	attributes 'Main-Class': application.mainClassName
+	attributes 'BankSystemServer-Class': application.mainClassName
 	// places with classes which may be needed by JVM
         attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
