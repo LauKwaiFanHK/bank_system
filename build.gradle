@@ -20,9 +20,8 @@ jar {
 }
 
 task copyJar(type: Copy) {
-    from "build/libs/${ProfessionalVersion}.jar"
+    from "src/main/java"
     into 'build/libs'
-    
 }
 
 repositories {
