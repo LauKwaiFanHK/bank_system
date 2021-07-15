@@ -34,7 +34,7 @@ task copyJar(type: Copy) {
     
     jarv2.baseName = 'StandardVersion'*/
     from 'build/libs/ProfessionalVersion'
-    into 'build/libs/bank_system'
+    into 'build/libs/ProfessionalVersion2'
 }
 
 //jar.dependsOn(jarv2)
