@@ -104,8 +104,7 @@ public class CreditService {
 	 * @param numberOfArg An integer representing the number of arguments taken for
 	 *                    command validation
 	 * @param list        an array list which store a list of all accounts in the
-	 *                    professional version bank system
-	 * @param standardOut           A PrintStream object that print representations of string data.                   
+	 *                    professional version bank system                  
 	 */
 
 	public void executePayInterest(String input, int numberOfArg, List<BaseAccount> list) {
