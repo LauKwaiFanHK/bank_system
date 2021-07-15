@@ -33,7 +33,7 @@ public class CreditServiceTests {
                 1000, existedBankAccountIds, accountList, out), 0.1);*/
         assertEquals(1000, creditService.executeGrantCredit("grantcredit", 2, 0,
                 1000, existedBankAccountIds, accountList, out), 0.1);
-        assertEquals(-35, bankAccount.getBalance(), 0.01);
+        assertEquals(965, bankAccount.getBalance(), 0.01);
 
         // getCreditInterest
         assertEquals(35, creditService.getCreditInterest("getCreditInterest", 1, 0,
