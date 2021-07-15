@@ -15,19 +15,21 @@ jar {
 		// places with classes which may be needed by JVM
 	    attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
-	
+	exclude 'myproject/Main.class'
+	exclude 'myproject/CreateAccount.class'
     baseName = 'ProfessionalVersion'
 }
 
 task jarv2(type: Jar) {
     manifest {
-    	// set location of main class        
-		attributes 'Main-Class': 'src/main/java/test/Main'
-		// places with classes which may be needed by JVM
-	    attributes 'Class-Path': 'commons-lang3-3.9.jar'
+        attributes 'Main-Class': 'myproject.Main'
+        attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
-    
-    exclude 'src/main/java/myproject/ProMain.java'
+    from sourceSets.main.output
+    exclude 'myproject/ProfessionalBankAccount.class'
+    exclude 'myproject/CreditService.class'
+    exclude 'myproject/CreateProAccount.class'
+    exclude 'myproject/ProMain.class'
     baseName = 'StandardVersion'
 }
 

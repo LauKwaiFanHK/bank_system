@@ -23,7 +23,7 @@ pipeline {
 		stage('Pack') {
 			steps {
 				sh 'echo "Packing"'
-				sh 'zip -r project_package.zip docs src/main/java/myproject src/test/java/myprojecttests build/libs/bank_system.jar build/libs/ProfessionalVersion.jar readme.md' 
+				sh 'zip -r project_package.zip docs src/main/java/myproject src/test/java/myprojecttests build/libs/StandardVersion.jar build/libs/ProfessionalVersion.jar readme.md' 
 			}
 		}
 		stage('Upload to download server') {
