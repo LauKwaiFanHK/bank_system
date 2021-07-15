@@ -37,7 +37,7 @@ task copyJar(type: Copy) {
     into 'build/libs/bank_system'
 }
 
-jar.dependsOn(jarv2)
+//jar.dependsOn(jarv2)
 
 repositories {
     mavenCentral()
