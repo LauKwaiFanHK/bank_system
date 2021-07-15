@@ -51,6 +51,7 @@ public class CreditService {
 		bankAccount.setCredit(bankAccount.getCredit() + credit);
 		double balance = bankAccount.getBalance();
 		balance = balance - bankAccount.getCredit() * 3.5 / 100;
+		balance = balance + credit;
 		bankAccount.setBalance(balance);
 
 		return bankAccount.getCredit();
