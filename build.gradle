@@ -27,7 +27,6 @@ task jarv2(type: Jar) {
     }
     from sourceSets.main.output
     exclude 'myproject/ProfessionalBankAccount.class'
-    exclude 'myproject/CreditService.class'
     exclude 'myproject/CreateProAccount.class'
     exclude 'myproject/ProMain.class'
     baseName = 'StandardVersion'

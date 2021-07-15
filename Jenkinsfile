@@ -37,5 +37,13 @@ pipeline {
 				}				
 			}
 		}
+		stage('Run') {
+             steps {
+                 sh './run.sh'
+             }
+         }
+
+		
+
 	}
 }
