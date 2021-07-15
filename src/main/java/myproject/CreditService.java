@@ -32,6 +32,7 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                               
 	 * @return a double containing the granted credit amount.
 	 */
 	public double executeGrantCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
@@ -71,6 +72,7 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                              
 	 * @return a double containing the credit still need to be repaid.
 	 */
 	public double executeRepayCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
@@ -132,6 +134,7 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                              
 	 * @return a double containing the amount of interest
 	 */
 	public double getCreditInterest(String input, int numberOfArg, Integer bankAccountId,
