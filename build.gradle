@@ -19,8 +19,8 @@ jar {
 	baseName = 'ProfessionalVersion'
 }
 
-/*task jarv2(type: Jar) {
-    manifest {
+task copyJar(type: Copy) {
+    /*manifest {
     	// set location of main class        
 		attributes 'Main-Class': application.mainClassName
 		// places with classes which may be needed by JVM
@@ -32,10 +32,12 @@ jar {
     exclude 'src/main/java/myproject/CreditService.java'
     exclude 'src/main/java/myproject/CreateProAccount.java'
     
-    jarv2.baseName = 'StandardVersion'
+    jarv2.baseName = 'StandardVersion'*/
+    from 'build/libs/ProfessionalVersion'
+    into 'build/libs/bank_system'
 }
 
-jar.dependsOn(jarv2)*/
+jar.dependsOn(jarv2)
 
 repositories {
     mavenCentral()
