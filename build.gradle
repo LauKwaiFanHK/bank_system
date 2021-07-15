@@ -8,7 +8,7 @@ application {
     mainClassName = 'myproject.BankSystemServer'
 }
 
-task jar1(type: Jar) {
+jar {
     manifest {
 	// set location of main class        
 	attributes 'Main-Class': application.mainClassName
