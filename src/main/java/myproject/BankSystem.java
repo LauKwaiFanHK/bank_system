@@ -28,6 +28,7 @@ public class BankSystem {
 
 	/**
 	 * Interacts with bank account owner and executes a command based on user input.
+	 * @param isPro A boolean that shows if the bank system is a professional version
 	 */
 	public void mainLoop(boolean isPro) {
 		
