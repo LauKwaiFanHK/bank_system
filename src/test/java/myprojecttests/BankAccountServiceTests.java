@@ -71,8 +71,7 @@ public class BankAccountServiceTests extends TestCase {
 	List<BaseAccount> baseAccounts = new ArrayList();
 	baseAccounts.add(bankAccount1);
 	baseAccounts.add(bankAccount2);
-	double result = bankAccountService
-			.executeTransfer("transfer", 5, 0, 1, 300, 
+	double result = bankAccountService.executeTransfer("transfer", 5, 0, 1, 300, 
 					idSendList, idReceiverList , baseAccounts, out);
 	assertEquals(700D, result);
 	}

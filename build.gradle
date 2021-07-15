@@ -8,19 +8,18 @@ application {
     mainClassName = 'myproject.BankSystemServer'
 }
 
-jar {
+task fatJar(type: Jar) {
     manifest {
 	// set location of main class        
 	attributes 'Main-Class': application.mainClassName
 	// places with classes which may be needed by JVM
-    attributes 'Class-Path': 'commons-lang3-3.9.jar'
+    //attributes 'Class-Path': 'commons-lang3-3.9.jar'
     }
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-	
-    baseName = 'ProfessionalVersion'
+	baseName = 'ProfessionalVersion2'
 }
 
-task jarv2(type: Jar) {
+/*task jarv2(type: Jar) {
     manifest {
     	// set location of main class        
 		attributes 'Main-Class': application.mainClassName
@@ -36,7 +35,7 @@ task jarv2(type: Jar) {
     jarv2.baseName = 'StandardVersion'
 }
 
-jar.dependsOn(jarv2)
+jar.dependsOn(jarv2)*/
 
 repositories {
     mavenCentral()

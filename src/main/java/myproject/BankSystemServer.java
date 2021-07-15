@@ -36,8 +36,4 @@ public class BankSystemServer {
         	System.out.println(e);
         }
     }
-    
-    public void print(String string) {
-    	out.println(string);
-    }
 }

@@ -45,6 +45,7 @@ public class BankAccountService {
 	 *                              in the bank system
 	 * @param list                  An array list that store the existing bank
 	 *                              accounts in the bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.
 	 */
 	public double executeGetBalance(String input, int numberOfArg, Integer bankAccountId,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
@@ -79,6 +80,7 @@ public class BankAccountService {
 	 *                              in the bank system
 	 * @param list                  An array list that store the existing bank
 	 *                              accounts in the bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                          
 	 */
 	public double executeDeposit(String input, int numberOfArg, Integer bankAccountId, double amount,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
@@ -117,6 +119,7 @@ public class BankAccountService {
 	 *                              in the bank system
 	 * @param list                  An array list that store the existing bank
 	 *                              accounts in the bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                           
 	 */
 	public double executeWithdraw(String input, int numberOfArg, Integer bankAccountId, double amount,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
@@ -167,6 +170,7 @@ public class BankAccountService {
 	 *                                  IDs of the receiver
 	 * @param list                      An array list that store the existing bank
 	 *                                  accounts in the bank system
+	 * @param standardOut               A PrintStream object that print representations of string data.                                 
 	 */
 	public double executeTransfer(String input, int numberOfArg, Integer senderAccountId, Integer receiverAccountId,
 			double amount, List<Integer> existedSenderAccountIds, List<Integer> existedReceiverAccountIds,

@@ -32,7 +32,9 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                             
 	 * @return a double containing the granted credit amount.
+	 * 
 	 */
 	public double executeGrantCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
 			List<Integer> existedBankAccountIds, List<BaseAccount> list, PrintStream standardOut) {
@@ -51,6 +53,7 @@ public class CreditService {
 		bankAccount.setCredit(bankAccount.getCredit() + credit);
 		double balance = bankAccount.getBalance();
 		balance = balance - bankAccount.getCredit() * 3.5 / 100;
+		balance = balance + credit;
 		bankAccount.setBalance(balance);
 
 		return bankAccount.getCredit();
@@ -70,6 +73,7 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                            
 	 * @return a double containing the credit still need to be repaid.
 	 */
 	public double executeRepayCredit(String input, int numberOfArg, Integer bankAccountId, double credit,
@@ -101,6 +105,7 @@ public class CreditService {
 	 *                    command validation
 	 * @param list        an array list which store a list of all accounts in the
 	 *                    professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                   
 	 */
 
 	public void executePayInterest(String input, int numberOfArg, List<BaseAccount> list) {
@@ -131,6 +136,7 @@ public class CreditService {
 	 *                              of the professional version bank system
 	 * @param list                  an array list which store a list of all accounts
 	 *                              in the professional version bank system
+	 * @param standardOut           A PrintStream object that print representations of string data.                             
 	 * @return a double containing the amount of interest
 	 */
 	public double getCreditInterest(String input, int numberOfArg, Integer bankAccountId,
@@ -167,6 +173,7 @@ public class CreditService {
 	 *                        compare with the input command
 	 * @param expectedArgs    an integer representing the number of expected
 	 *                        arguments in a command
+	 * @param standardOut           A PrintStream object that print representations of string data.                       
 	 * @return a boolean containing the state of validation.
 	 */
 	private boolean isValidCommand(String input, int numberOfArg, String expectedCommand, int expectedArgs) {
